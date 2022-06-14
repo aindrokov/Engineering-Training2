@@ -1,5 +1,14 @@
-console.log('Engineering Training!');
+console.log("Engineering Training!");
 
-const openButton = document.getElementById('modal1Button');
+const modalButton = document.getElementById("modalButton");
 
-console.log("modalButton", modal1Button);
+console.log("modalButton", modalButton);
+
+modalButton.addEventListener("click", whenClicked);
+
+function whenClicked() {
+  console.log("Clicked!");
+  let modalContainer = document.getElementById("modal");
+  modalContainer.classList.toggle("hidden");
+  console.log(modalContainer.classList);
+}

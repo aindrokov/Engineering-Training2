@@ -24,7 +24,7 @@ function whenCloseClicked() {
   modalContainer.classList.toggle("hidden");
 }
 
-const jiraTitles = [
+let titles = [
   "Create and publish a public repository in GitHub under your personal account named 'Engineering Training'",
   "Create index.html with basic html markup and perform first commit",
   "Add anchor tags for each completed subtasks",
@@ -36,11 +36,8 @@ const jiraTitles = [
   "Pseudo-selectors - Add hover styling to list elements",
   "UI Libraries - Add Bootstrap to your page, add check icons to your list, and convert your list into a bootstrap list-group",
 ];
-for (let index = 0; index < jiraTitles.length; index++) {
-  console.log(jiraTitles[index]);
-}
 
-const jiraLinks = [
+let links = [
   "https://totalwine.atlassian.net/browse/DIG-70749",
   "https://totalwine.atlassian.net/browse/DIG-70771",
   "https://totalwine.atlassian.net/browse/DIG-70804",
@@ -52,6 +49,13 @@ const jiraLinks = [
   "https://totalwine.atlassian.net/browse/DIG-71062",
   "https://totalwine.atlassian.net/browse/DIG-71085",
 ];
-for (let index = 0; index < jiraLinks.length; index++) {
-  console.log(jiraLinks[index]);
+
+const jirasArray = [];
+for (let index = 0; index < titles.length; index++) {
+    jirasArray.push({
+      titles: titles[index],
+      links: links[index],
+    });
 }
+
+console.log(jirasArray);

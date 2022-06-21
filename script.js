@@ -58,4 +58,11 @@ for (let index = 0; index < titles.length; index++) {
     });
 }
 
-console.log(jirasArray);
+var list = document.getElementsByClassName("grid-container");
+
+jirasArray.forEach(element => {
+  console.log(element); 
+  var listElement = document.createElement("li");
+list[0].prepend(listElement);
+});
+

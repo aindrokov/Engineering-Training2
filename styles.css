@@ -19,7 +19,7 @@ li:active {
   padding: 0px;
 }
 
-.grid-item {
+/* .grid-item {
   background-color: white;
   outline: 1px solid black;
   font-family: helvetica;
@@ -27,7 +27,7 @@ li:active {
   text-align: left;
   padding: 20px;
   display: flex;
-}
+} */
 
 .bi-check-circle-fill {
   margin-right: 10px;

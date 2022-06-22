@@ -20,11 +20,11 @@ console.log("closeModal", closeModalButton);
 
 function whenCloseClicked() {
   console.log("Clicked Close!");
-  let modalContainer = document.getElementById("modal");
+  const modalContainer = document.getElementById("modal");
   modalContainer.classList.toggle("hidden");
 }
 
-let titles = [
+const titles = [
   "Create and publish a public repository in GitHub under your personal account named 'Engineering Training'",
   "Create index.html with basic html markup and perform first commit",
   "Add anchor tags for each completed subtasks",
@@ -37,7 +37,7 @@ let titles = [
   "UI Libraries - Add Bootstrap to your page, add check icons to your list, and convert your list into a bootstrap list-group",
 ];
 
-let links = [
+const links = [
   "https://totalwine.atlassian.net/browse/DIG-70749",
   "https://totalwine.atlassian.net/browse/DIG-70771",
   "https://totalwine.atlassian.net/browse/DIG-70804",
@@ -52,17 +52,18 @@ let links = [
 
 const jirasArray = [];
 for (let index = 0; index < titles.length; index++) {
-    jirasArray.push({
-      titles: titles[index],
-      links: links[index],
-    });
+  jirasArray.push({
+    title: titles[index],
+    link: links[index],
+  });
 }
 
-var list = document.getElementsByClassName("grid-container");
+const list = document.getElementsByClassName("grid-container");
 
-jirasArray.forEach(element => {
-  console.log(element); 
-  var listElement = document.createElement("li");
-list[0].prepend(listElement);
+jirasArray.forEach((element) => {
+  console.log(element);
+  const listElement = document.createElement("li");
+  listElement.innerHTML = `<li class="grid-item"><i class="bi bi-check-circle-fill"></i><a
+  href="${element.link}">${element.title}</a></li>`;
+  list[0].append(listElement);
 });
-

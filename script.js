@@ -5,6 +5,7 @@ const modalButton = document.getElementById("modalButton");
 console.log("modalButton", modalButton);
 
 modalButton.addEventListener("click", whenClicked);
+modalButton.addEventListener("click", loadData);
 
 function whenClicked() {
   console.log("Clicked!");
@@ -15,7 +16,6 @@ function whenClicked() {
 const closeModalButton = document.getElementsByClassName("closeModal");
 
 closeModalButton[0].addEventListener("click", whenCloseClicked);
-closeModalButton[0].addEventListener("click", loadData);
 
 console.log("closeModal", closeModalButton);
 
@@ -26,6 +26,7 @@ function whenCloseClicked() {
 }
 
 function loadData() { setTimeout(function() {
+  renderData();
   console.log('Data loaded');
 }, 1.0*1000);
 };
@@ -66,10 +67,13 @@ for (let index = 0; index < titles.length; index++) {
 
 const list = document.getElementsByClassName("grid-container");
 
-jirasArray.forEach((element) => {
-  console.log(element);
-  const listElement = document.createElement("li");
-  listElement.innerHTML = `<li class="grid-item"><i class="bi bi-check-circle-fill"></i><a
-  href="${element.link}">${element.title}</a></li>`;
-  list[0].append(listElement);
-});
+function renderData(){
+  jirasArray.forEach((element) => {
+    console.log(element);
+    const listElement = document.createElement("li");
+    listElement.innerHTML = `<li class="grid-item"><i class="bi bi-check-circle-fill"></i><a
+    href="${element.link}">${element.title}</a></li>`;
+    list[0].append(listElement);
+  })
+  whenCloseClicked();
+}

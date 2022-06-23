@@ -15,6 +15,7 @@ function whenClicked() {
 const closeModalButton = document.getElementsByClassName("closeModal");
 
 closeModalButton[0].addEventListener("click", whenCloseClicked);
+closeModalButton[0].addEventListener("click", loadData);
 
 console.log("closeModal", closeModalButton);
 
@@ -23,6 +24,11 @@ function whenCloseClicked() {
   const modalContainer = document.getElementById("modal");
   modalContainer.classList.toggle("hidden");
 }
+
+function loadData() { setTimeout(function() {
+  console.log('Data loaded');
+}, 1.0*1000);
+};
 
 const titles = [
   "Create and publish a public repository in GitHub under your personal account named 'Engineering Training'",

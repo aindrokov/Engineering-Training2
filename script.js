@@ -4,7 +4,7 @@ const modalButton = document.getElementById("modalButton");
 
 console.log("modalButton", modalButton);
 
-modalButton.addEventListener("click", whenClicked);
+//modalButton.addEventListener("click", whenClicked);
 modalButton.addEventListener("click", loadData);
 
 function whenClicked() {
@@ -24,9 +24,23 @@ function whenCloseClicked() {
   const modalContainer = document.getElementById("modal");
   modalContainer.classList.toggle("hidden");
 }
+let dataLoaded = false;
 
-function loadData() { setTimeout(function() {
-  renderData();
+function loadData() { 
+  if (dataLoaded){
+    console.log("Date Already Loaded");
+    return 
+  }
+  whenClicked();
+  
+  setTimeout(function() {
+  
+  renderData().then((response)=>{
+    dataLoaded = true;
+    list[0].innerHTML = response;
+    whenCloseClicked();
+    return response;
+}) 
   console.log('Data loaded');
 }, 1.0*1000);
 };
@@ -67,13 +81,16 @@ for (let index = 0; index < titles.length; index++) {
 
 const list = document.getElementsByClassName("grid-container");
 
-function renderData(){
-  jirasArray.forEach((element) => {
-    console.log(element);
-    const listElement = document.createElement("li");
-    listElement.innerHTML = `<li class="grid-item"><i class="bi bi-check-circle-fill"></i><a
-    href="${element.link}">${element.title}</a></li>`;
-    list[0].append(listElement);
-  })
-  whenCloseClicked();
+function renderData() {
+    return new Promise((resolve) => {
+      let response = "";
+        jirasArray.forEach(element => { 
+          const {link, title } = element;
+            response += `<li class="item"><a href= ${link}> 
+        <i class="bi bi-check-circle-fill">
+        </i> ${title} 
+        </a></li>`;
+        });
+        resolve(response);
+    })  
 }

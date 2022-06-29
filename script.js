@@ -4,9 +4,6 @@ const modalButton = document.getElementById("modalButton");
 
 console.log("modalButton", modalButton);
 
-//modalButton.addEventListener("click", whenClicked);
-modalButton.addEventListener("click", loadData);
-
 function whenClicked() {
   console.log("Clicked!");
   let modalContainer = document.getElementById("modal");
@@ -26,25 +23,6 @@ function whenCloseClicked() {
 }
 
 let dataLoaded = false;
-
-function loadData() { 
-  if (dataLoaded == true){
-    console.log("Data Already Loaded");
-    return 
-  }
-  whenClicked();
-  
-  setTimeout(function() {
-  
-  renderData().then((response)=>{
-    dataLoaded = true;
-    list[0].innerHTML = response;
-    whenCloseClicked();
-    return response;
-}) 
-  console.log('Data loaded');
-}, 1.0*1000);
-};
 
 const titles = [
   "Create and publish a public repository in GitHub under your personal account named 'Engineering Training'",
@@ -82,16 +60,37 @@ for (let index = 0; index < titles.length; index++) {
 
 const list = document.getElementsByClassName("grid-container");
 
-function renderData() {
+const utils = {
+  renderData: function () {
     return new Promise((resolve) => {
       let response = "";
-        jirasArray.forEach(element => { 
-          const {link, title } = element;
-            response += `<li class="item"><a href= ${link}> 
+      jirasArray.forEach((element) => {
+        const { link, title } = element;
+        response += `<li class="item"><a href= ${link}> 
         <i class="bi bi-check-circle-fill">
         </i> ${title} 
         </a></li>`;
-        });
-        resolve(response);
-    })  
-}
+      });
+      resolve(response);
+    });
+  },
+  loadData: function () {
+    if (dataLoaded == true) {
+      console.log("Data Already Loaded");
+      return;
+    }
+    whenClicked();
+
+    setTimeout(function () {
+      utils.renderData().then((response) => {
+        dataLoaded = true;
+        list[0].innerHTML = response;
+        whenCloseClicked();
+        return response;
+      });
+      console.log("Data loaded");
+    }, 1.0 * 1000);
+  },
+};
+
+modalButton.addEventListener("click", utils.loadData);

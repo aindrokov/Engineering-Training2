@@ -24,11 +24,12 @@ function whenCloseClicked() {
   const modalContainer = document.getElementById("modal");
   modalContainer.classList.toggle("hidden");
 }
+
 let dataLoaded = false;
 
 function loadData() { 
-  if (dataLoaded){
-    console.log("Date Already Loaded");
+  if (dataLoaded == true){
+    console.log("Data Already Loaded");
     return 
   }
   whenClicked();

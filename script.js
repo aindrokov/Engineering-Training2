@@ -50,14 +50,6 @@ const links = [
   "https://totalwine.atlassian.net/browse/DIG-71085",
 ];
 
-const jirasArray = [];
-for (let index = 0; index < titles.length; index++) {
-  jirasArray.push({
-    title: titles[index],
-    link: links[index],
-  });
-}
-
 const list = document.getElementsByClassName("grid-container");
 
 const utils = {
@@ -94,3 +86,20 @@ const utils = {
 };
 
 modalButton.addEventListener("click", utils.loadData);
+
+class JiraHandler {
+  constructor(links, titles) {
+this.links = links;
+this.titles = titles;
+  }
+};
+
+const jiraHandler = new JiraHandler(links, titles);
+
+const jirasArray = [];
+for (let index = 0; index < jiraHandler.titles.length; index++) {
+  jirasArray.push({
+    title: jiraHandler.titles[index],
+    link: jiraHandler.links[index],
+  });
+}

@@ -87,19 +87,23 @@ const utils = {
 
 modalButton.addEventListener("click", utils.loadData);
 
+const jirasArray = [];
+
 class JiraHandler {
   constructor(links, titles) {
 this.links = links;
 this.titles = titles;
+this.jirasObject = [];
+this.createJiraObject();
+  }
+  createJiraObject() {
+    for (let index = 0; index < this.titles.length; index++) {
+      jirasArray.push({
+        title:this.titles[index],
+        link:this.links[index],
+      })
+    }
   }
 };
 
 const jiraHandler = new JiraHandler(links, titles);
-
-const jirasArray = [];
-for (let index = 0; index < jiraHandler.titles.length; index++) {
-  jirasArray.push({
-    title: jiraHandler.titles[index],
-    link: jiraHandler.links[index],
-  });
-}

@@ -86,9 +86,7 @@
 
       setTimeout(() => {
         this.renderData().then((response) => {
-          //dataLoaded = true;
           list[0].innerHTML = response;
-          //whenCloseClicked();
           return response;
         })
       }, 2000)
@@ -123,10 +121,6 @@
   const closeModalButton = document.getElementsByClassName("closeModal");
 
   closeModalButton[0].addEventListener("click", whenCloseClicked);
-
-  // console.log("closeModal", closeModalButton);
-
-  //let dataLoaded = false;
 
   const list = document.getElementsByClassName("grid-container");
 

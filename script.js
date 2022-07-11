@@ -71,13 +71,13 @@
     const modalButton = document.getElementById("modalButton");
     modalButton.addEventListener("click", () => {
       if (dataLoaded === false) {
-        resolve();
+        utils.loadData(() => {
+          resolve();
+              dataLoaded = true;
+            })
       }
     });
     })
-      .then(utils.loadData(() => {
-        dataLoaded = true;
-      }));
   }
 
   const utils = {
@@ -85,7 +85,7 @@
       setTimeout(whenCloseClicked, 1000)
 
       setTimeout(() => {
-        utils.renderData().then((response) => {
+        this.renderData().then((response) => {
           //dataLoaded = true;
           list[0].innerHTML = response;
           //whenCloseClicked();
@@ -116,7 +116,7 @@
 
   function whenCloseClicked() {
     console.log("Clicked Close!");
-    const modalContainer = document.getElementById("modal");
+    let modalContainer = document.getElementById("modal");
     modalContainer.classList.toggle("hidden");
   }
 

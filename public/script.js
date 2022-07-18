@@ -81,21 +81,24 @@
   }
 
   const utils = {
-    loadData: function (callback) {
-      setTimeout(whenCloseClicked, 1000)
+    loadData: async function (callback) {
+      const response = await fetch("/getJiraTickets");
+      const data = await response.json();
+      console.log(data);
+      setTimeout(whenCloseClicked, 1000);
 
       setTimeout(() => {
         this.renderData().then((response) => {
           list[0].innerHTML = response;
           return response;
-        })
-      }, 2000)
+        });
+      }, 2000);
       callback();
 
       setTimeout(() => {
         let modalContainer = document.getElementById("modal");
         modalContainer.classList.add("hidden");
-    }, 2000)
+      }, 2000);
     },
     renderData: function () {
       return new Promise((resolve) => {

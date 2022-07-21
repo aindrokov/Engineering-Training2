@@ -5,6 +5,8 @@ const port = 3000;
 const router = express.Router();
 const dataHandler = require('./dataHandler');
 
+require('dotenv').config();
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });

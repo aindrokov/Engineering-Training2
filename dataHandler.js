@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { Octokit } = require("@octokit/rest");
 const { application } = require('express');
+const JiraApi = require('jira-client');
 
 const titles = [
     "Create and publish a public repository in GitHub under your personal account named 'Engineering Training'",
@@ -84,7 +85,7 @@ const titles = [
       });
     }
   }
-  
+
   const jiraHandler = new JiraHandler(links, titles);
 
   const octokit = new Octokit({ 
@@ -102,5 +103,22 @@ const titles = [
         timeout: 0
     }
 });
+
+var jira = new JiraApi({
+  protocol: 'https',
+  host: 'totalwine.atlassian.net',
+  username: process.env.JIRA_USERNAME,
+  password: process.env.JIRA_TOKEN,
+  apiVersion: '2',
+  strictSSL: true
+});
+
+jira.findIssue("DIG-72462")
+  .then(function(issue) {
+    console.log('Status: ' + issue.fields.status.name);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
 
 module.exports = jiraHandler;

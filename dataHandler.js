@@ -76,15 +76,15 @@ const titles = [
           repo: "Engineering-Training",
         })
         .then((response) => {
-          for (let index = 0; index < 20; index++) {
-          console.log(response.data[index].commit.message);
+          for (let index = 0; index < response.data.length; index++) {
+          console.log("commit message: " + response.data[index].commit.message);
           }
         });
         resolve();
       });
     }
   }
-  //for (let index = 0; index < this.titles.length; index++) {
+  
   const jiraHandler = new JiraHandler(links, titles);
 
   const octokit = new Octokit({ 
@@ -103,12 +103,4 @@ const titles = [
     }
 });
 
-// octokit.rest.repos.listCommits({
-//   owner: "aindrokov",
-//   repo: "Engineering-Training",
-// })
-// .then((response) => {
-//   console.log(response);
-// });
-  
 module.exports = jiraHandler;

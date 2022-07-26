@@ -66,8 +66,8 @@ const titles = [
       }
     }
 
-    fetchGitHubData() {
-      return new Promise((resolve) => {
+    async fetchGitHubData() {
+      return new Promise( async (resolve) => {
         
         const octokit = new Octokit({
           auth: process.env.GITHUB_TOKEN,
@@ -77,12 +77,21 @@ const titles = [
           repo: "Engineering-Training",
         })
         .then((response) => {
+          let jiraTicketNumber = [];
+          const regex = /([A-Z][A-Z0-9]+-[0-9]+)/g;
           for (let index = 0; index < response.data.length; index++) {
-          console.log("commit message: " + response.data[index].commit.message);
+            let ticketNumber = response.data[index].commit.message.match(regex);
+            let i = jiraTicketNumber.indexOf(ticketNumber);
+
+            if (ticketNumber !== null && i === -1) {
+              jiraTicketNumber.push(ticketNumber);
+            } else {
+              console.log(jiraTicketNumber + " Jira ticket duplicates");
+            }
           }
-        });
-        resolve();
-      });
+          console.log(jiraTicketNumber);
+        })
+      })
     }
   }
 

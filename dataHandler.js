@@ -29,17 +29,26 @@ var jira = new JiraApi({
   strictSSL: true,
 });
 
-async function getStatus(issueNumber) {
-  return new Promise(async (resolve) => {
-    const issue = await jira.findIssue(issueNumber);
-    resolve(issue);
-  })
-    .then((issue) => {
-      console.log("Summary: " + issue.fields.summary);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+async function findJiraIssue(issueNumber) {
+  return new Promise(async (resolve, reject) => {
+    jira
+      .findIssue(issueNumber)
+      //   resolve(issue, titles, links);
+      // })
+      .then((issue) => {
+        //console.log("Summary: " + issue.fields.summary);
+        const { summary } = issue.fields;
+        console.log("Summary: " + summary);
+        resolve({
+          title: summary,
+          link: `https://totalwine.atlassian.net/browse/${issueNumber}`,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        reject(err);
+      });
+  });
 }
 
 const titles = [
@@ -115,9 +124,11 @@ class JiraHandler {
       resolve(commits);
     });
   }
+
   getJiraInfo() {
     this.fetchGitHubData().then((listMyCommits) => {
       let jiraTicketNumber = [];
+      let promises = [];
       const regex = /([A-Z][A-Z0-9]+-[0-9]+)/g;
       for (let index = 0; index < listMyCommits.data.length; index++) {
         let ticketNumber =
@@ -133,8 +144,11 @@ class JiraHandler {
       console.log(jiraTicketNumber);
 
       for (let i = 0; i < jiraTicketNumber.length; i++) {
-        getStatus(jiraTicketNumber[i]);
+        promises.push(findJiraIssue(jiraTicketNumber[i]));
       }
+      Promise.all(promises).then((values) => {
+        console.log(values);
+      });
     });
   }
 }

@@ -4,9 +4,11 @@
   "description": "React training Artem",
   "main": "app.js",
   "scripts": {
-    "test": "testsend",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start": "nodemon server.js",
+    "react-dev": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -25,10 +27,15 @@
     "@octokit/rest": "^19.0.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "jira-client": "^8.1.0"
+    "jira-client": "^8.1.0",
+    "nodemon": "^2.0.19",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
+    "@babel/preset-env": "^7.18.9",
+    "@babel/preset-react": "^7.18.6",
     "@storybook/addon-actions": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-interactions": "^6.5.9",

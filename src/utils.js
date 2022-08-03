@@ -1,14 +1,7 @@
-function whenCloseClicked() {
-    console.log("Clicked Close!");
-    let modalContainer = document.getElementById("modal");
-    modalContainer.classList.toggle("hidden");
-  }
-
 const list = document.getElementsByClassName("grid-container");
 
 const utils = {
     loadData: async function (callback) {
-      whenCloseClicked();
       const response = await fetch("/getJiraTickets");
       const data = await response.json();
       console.log(data);

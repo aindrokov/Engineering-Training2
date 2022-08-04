@@ -1,25 +1,12 @@
+import { Provider } from 'react-redux'
+import store from './store';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Button from './components/button';
 
-ReactDOM.render(
-  <Button/>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <Provider store={store}>
+    <Button/>
+  </Provider>
 );
-
-(async function () {
-  console.log("Engineering Training!");
-
-  
-
-  // function whenCloseClicked() {
-  //   console.log("Clicked Close!");
-  //   let modalContainer = document.getElementById("modal");
-  //   modalContainer.classList.toggle("hidden");
-  // }
-
-  // const closeModalButton = document.getElementsByClassName("closeModal");
-
-  // closeModalButton[0].addEventListener("click", whenCloseClicked);
-
-})();

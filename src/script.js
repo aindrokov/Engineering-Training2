@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux'
 import store from './store';
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import Button from './components/button';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))

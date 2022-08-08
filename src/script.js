@@ -4,11 +4,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom/client';
 import Button from './components/button';
 import Modal from './components/modal';
+import Logo from './components/logo';
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <Provider store={store}>
-    <Button/>,
+    <Button/>
     <Modal/>
+    <Logo/>
   </Provider>
 );

@@ -1,28 +1,25 @@
-const list = document.getElementsByClassName("grid-container");
+import store from "./store";
 
 const utils = {
-  loadData: async function (callback) {
-    const response = await fetch("/getJiraTickets");
-    const data = await response.json();
-    console.log(data);
-
-    this.renderData(data).then((response) => {
-      list[0].innerHTML = response;
-      return response;
-    });
-    callback();
-  },
-  renderData: function (data) {
-    return new Promise((resolve) => {
-      let response = "";
-      data.jirasObject.forEach((element) => {
-        let { link, title, icon } = element;
-        response += `<li class="item"><a href= ${link}> 
-        <i class="${icon}">
-        </i> ${title} 
-        </a></li>`;
+  renderData: async function () {
+    return new Promise(async (resolve) => {
+      const apiResponse = await fetch("/getJiraTickets").catch((err) => {
+      //apiResponse.json().then((data) => {
+        store.dispatch({ type: "DATA_FAILURE", error: err.message  })
       });
-      resolve(response);
+      if(!apiResponse || !apiResponse.json) {
+        return
+      }
+
+    apiResponse.json().then((data) => {
+        store.dispatch({ type: "DATA_SUCCESS", data })
+        resolve(data);
+    });
+  })
+  },
+  loadData: function (callback) {
+    this.renderData().then((response) => {
+      callback(response);
     });
   },
 };

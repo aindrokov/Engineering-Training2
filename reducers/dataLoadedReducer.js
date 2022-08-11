@@ -1,7 +1,10 @@
 const INITIAL_STATE = {
-    dataLoaded: false,
+  data: {},
+  dataLoaded: false,
+  loading: false,
+  error: "This is an error message",
 };
-  
+
 function dataLoadedReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "TOGGLE_DATALOADED":
@@ -16,7 +19,18 @@ function dataLoadedReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         loading: action.loading,
-    };
+      };
+    case "DATA_SUCCESS":
+      return {
+        ...state,
+        data: action.data,
+      };
+    case "DATA_FAILURE":
+      return {
+        ...state,
+        error: action.error,
+        loading: false,
+      };
   }
 }
 

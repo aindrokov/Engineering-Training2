@@ -2,7 +2,7 @@ const INITIAL_STATE = {
   data: {},
   dataLoaded: false,
   loading: false,
-  error: "This is an error message",
+  error: null,
 };
 
 function dataLoadedReducer(state = INITIAL_STATE, action) {

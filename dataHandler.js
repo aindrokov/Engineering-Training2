@@ -43,22 +43,9 @@ async function findJiraIssue(issueNumber) {
         });
       })
       .catch((err) => {
-        console.log(err);
         reject(err);
       });
   });
-}
-
-let jiraTemplate = {
-  icon: "bi bi-check-circle-fill",
-};
-
-let errorJiraTemplate = {
-  icon: "bi bi-x-circle",
-};
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
 }
 
 function getIcon() {

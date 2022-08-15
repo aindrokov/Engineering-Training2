@@ -15,9 +15,10 @@ function ErrorMessage(props) {
 }
 
 function mapStateToProps(state) {
-    return {
-        error: state.error,
-    }
+        const { error } = state.dataLoaded;
+        return {
+        error
+    };
 };
 
 

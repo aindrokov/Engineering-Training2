@@ -1,0 +1,9 @@
+.storybook-logo--small {
+    width: 100px;
+    margin: 20px;
+}
+
+.storybook-logo--large {
+    width: 200px;
+    margin: 40px;
+}

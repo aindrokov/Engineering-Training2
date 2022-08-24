@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loads data when clicked 1`] = `
+<button
+  onClick={[Function]}
+>
+  Load Data
+</button>
+`;

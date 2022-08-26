@@ -14,6 +14,7 @@ function List(props) {
           icon={item.icon}
           title={item.title}
           link={item.link}
+          iconText={item.iconText}
         />
       ))}
     </ul>

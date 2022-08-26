@@ -7,7 +7,8 @@ class ListItem extends React.Component {
     render() {
       return (
         <li className="item"><a href={this.props.link}> 
-        <i className={this.props.icon}>
+        <i className={`badge text-bg-${this.props.icon}`}>
+        {this.props.iconText}
         </i>{this.props.title} 
         </a></li>
       );

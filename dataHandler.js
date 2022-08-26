@@ -34,12 +34,19 @@ async function findJiraIssue(issueNumber) {
     jira
       .findIssue(issueNumber)
       .then((issue) => {
-        const { summary } = issue.fields;
-        console.log("Summary: " + summary);
+        const {
+          summary,
+          status: { id, name },
+        } = issue.fields;
+        let icon = "primary";
+        if (id === 3) {
+          icon = "secondary";
+        }
         resolve({
+          icon,
+          iconText: name,
           title: summary,
           link: `https://totalwine.atlassian.net/browse/${issueNumber}`,
-          icon: "bi bi-check-circle-fill",
         });
       })
       .catch((err) => {

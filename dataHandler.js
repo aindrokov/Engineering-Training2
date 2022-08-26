@@ -39,7 +39,7 @@ async function findJiraIssue(issueNumber) {
           status: { id, name },
         } = issue.fields;
         let icon = "primary";
-        if (id === 3) {
+        if (id === "3") {
           icon = "secondary";
         }
         resolve({
